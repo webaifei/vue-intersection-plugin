@@ -1,5 +1,5 @@
 # vue-intersection-plugin
-> 检测DOM节点 是否曝光 用语广告、产品曝光等统计
+> 检测DOM节点 是否曝光 用于广告、产品曝光等统计
 
 ### install
 ```js
