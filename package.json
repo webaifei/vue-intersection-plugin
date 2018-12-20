@@ -1,0 +1,9 @@
+{
+  "name": "vue-intersection-plugin",
+  "version": "1.0.0",
+  "description": "a plugin ",
+  "main": "index.js",
+  "repository": "https://github.com/webaifei/vue-intersection-plugin.git",
+  "author": "webaifei",
+  "license": "MIT"
+}
