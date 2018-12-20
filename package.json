@@ -1,9 +1,27 @@
 {
-  "name": "vue-intersection-plugin",
-  "version": "1.0.0",
-  "description": "a plugin ",
-  "main": "index.js",
-  "repository": "https://github.com/webaifei/vue-intersection-plugin.git",
-  "author": "webaifei",
-  "license": "MIT"
+    "name": "vue-intersection-plugin",
+    "version": "1.0.0",
+    "description": "a plugin ",
+    "main": "index.js",
+    "scripts": {
+        "doc:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs",
+        "docs:deploy": "./scripts/deploy.sh",
+        "build": "rollup -c"
+    },
+    "repository": "https://github.com/webaifei/vue-intersection-plugin.git",
+    "author": "webaifei",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/preset-env": "^7.2.0",
+        "rollup-plugin-babel": "4.0.0-beta.8",
+        "rollup-plugin-commonjs": "^9.2.0",
+        "rollup-plugin-node-resolve": "^4.0.0",
+        "vuepress": "^0.14.8"
+    },
+    "dependencies": {
+        "@babel/polyfill": "^7.0.0",
+        "intersection-observer": "^0.5.1",
+        "rollup": "^0.68.1"
+    }
 }
