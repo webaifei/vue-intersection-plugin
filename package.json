@@ -2,7 +2,7 @@
     "name": "vue-intersection-plugin",
     "version": "1.0.1",
     "description": "a plugin ",
-    "main": "index.esm.js",
+    "main": "dist/index.esm.js",
     "scripts": {
         "doc:dev": "vuepress dev docs",
         "docs:build": "vuepress build docs",
