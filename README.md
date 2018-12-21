@@ -49,7 +49,7 @@ options
 #### 指令参数
 TODO
 #### 埋点数据
-将埋点发送的数据绑定到要曝光统计的DOM元素 dataset上
+将埋点发送的数据绑定到要曝光统计的DOM元素或者是vue组件 data-log属性上
 ```vue
  <div
     v-intersection
@@ -58,7 +58,13 @@ TODO
        productId: '0011'
     })"
     >
-
+    <your-vue-component
+        v-intersection
+        :data-log="JSON.stringify({
+           module: 'test-b',
+           productId: '00111'
+        })"
+    />
 </div>
 ```
 ### Demo
