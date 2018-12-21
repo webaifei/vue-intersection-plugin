@@ -9,7 +9,7 @@ yarn run doc:build
 # copy demo to docs/.vuepress/dist
 if test -e src/demo/dist
 then
-    cp -rf src/demo/dist docs/.vuepress/dist/demo
+    rm -rf src/demo/dist
 else
     cd src/demo
     yarn run build

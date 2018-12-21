@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import Toast from "mand-mobile";
 export default {
     name: 'result-page-demo',
     data() {
