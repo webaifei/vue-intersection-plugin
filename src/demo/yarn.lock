@@ -6515,9 +6515,9 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.1"
   resolved "http://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.1.tgz#b2d3d95402a811602380783ea4f566eb875569a2"
 
-vue-intersection-plugin@^1.0.2:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/vue-intersection-plugin/download/vue-intersection-plugin-1.0.2.tgz#1bcd498073bd8ca20040ba673a989a2b9499984b"
+vue-intersection-plugin@^1.1.2:
+  version "1.1.2"
+  resolved "http://registry.npm.taobao.org/vue-intersection-plugin/download/vue-intersection-plugin-1.1.2.tgz#3aba153dc11fe90670156fb7ffe8f2b82abaa7e7"
   dependencies:
     "@babel/polyfill" "^7.0.0"
     intersection-observer "^0.5.1"

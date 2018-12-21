@@ -1,5 +1,5 @@
 /**
-* vue-intersection-plugin v1.0.2
+* vue-intersection-plugin v1.1.2
 * (c) 2018 webaifei
 * @license MIT
 */
@@ -1600,10 +1600,7 @@ VueIntersection.prototype._startTimer = function ($el, handler, duration) {
 
       try {
         var logConfig = JSON.parse(logConfigStr);
-        var eventName = logConfig.eventName,
-            eventValue = logConfig.eventValue,
-            rsd = logConfig.rsd;
-        handler(eventName, eventValue, rsd);
+        handler(logConfig);
       } catch (error) {
         console.log(error);
       }

@@ -27,10 +27,10 @@ export default {
   },
   created() {},
   mounted() {
-    const data = this.$refs["img"].dataset.log;
+    // const data = this.$refs["img"].dataset.log;
 
-    console.log(typeof data);
-    console.log(JSON.parse(data));
+    // console.log(typeof data);
+    // console.log(JSON.parse(data));
   }
 };
 </script>
