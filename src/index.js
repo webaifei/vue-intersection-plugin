@@ -62,7 +62,7 @@ VueIntersection.prototype._observe = function () {
     const {handler, root, rootMargin, threshold, duration} = this.options;
     this.globalObserver = new IntersectionObserver((entries)=>{
         entries.forEach(item=> {
-            // item.isIntersecting 真机测试效果 基本上都是 true
+            // item.isIntersecting 真机测试效果 基本上都是 true 暂时无用
             // item.target
             // item.intersectionRatio
             const $el = item.target;
@@ -84,20 +84,11 @@ VueIntersection.prototype._observe = function () {
                     }
                     // 上一次也在可视区域
                     else {
-                        // if(!$el.timer) {
-                        //     this._startTimer($el, handler, duration);
-                        // }
-                        //
+
                     }
                 }
 
             } else { // 本次检测不在可视区域中
-                // 没有上一次的位置 首次
-                // if($el.preIntersectionRatio === undefined) {
-                //     // $el.preIntersectionRatio = item.intersectionRatio;
-                //     return;
-                // }
-
                 // 上一次不在可视区域
                 if($el.preIntersectionRatio < threshold[0]) {
                     // enter

@@ -4,7 +4,7 @@ lang: zh-CN
 home: true
 heroImage: 
 actionText: Get Started →
-actionLink: 
+actionLink: #quick-setup
 features:
 - title: Simple
   details: 

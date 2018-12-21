@@ -38,9 +38,9 @@ Vue.use(vueIntersectionPlugin, {
 ```js
 Vue.use(vueIntersectionPlugin, options)
 ```
-options
-|porp|value| example | default |TIPS|
-|--|--|--|---|---|
+
+|prop|value| example | default |TIPS|
+|---|---|---|---|---|
 |root| DOM element |document.getElementById('#test')| document|其他的容器没有测试|
 |handler| 满足曝光条件出发的回调 | | null ||
 |threshold|dom元素在可视区域漏出多少 算曝光 [Array, Number] |0.5 or [0.5]| 0.5 |如果想要实现一进入可视区域就开始算曝光，你设置threshold:0 ,程序内部会将它充值成0.01|

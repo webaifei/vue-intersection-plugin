@@ -5,8 +5,8 @@
     "main": "dist/index.esm.js",
     "scripts": {
         "doc:dev": "vuepress dev docs",
-        "docs:build": "vuepress build docs",
-        "docs:deploy": "./scripts/deploy.sh",
+        "doc:build": "vuepress build docs",
+        "doc:deploy": "./scripts/deploy.sh",
         "build": "rollup -c"
     },
     "repository": "https://github.com/webaifei/vue-intersection-plugin.git",
