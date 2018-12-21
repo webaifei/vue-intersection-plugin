@@ -1,8 +1,8 @@
 /**
-    * vue-intersection-plugin v1.0.0
-    * (c) 2018 webaifei
-    * @license MIT
-    */
+* vue-intersection-plugin v1.0.2
+* (c) 2018 webaifei
+* @license MIT
+*/
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -1469,8 +1469,7 @@ function VueIntersection(Vue) {
     //停留时长
     deviation: 0.1 //误差
 
-  }; // this._observers = {};
-
+  };
   this.Vue = Vue;
   this.init(options);
 } // Vue.use 的时候 调用此方法
@@ -1486,6 +1485,9 @@ VueIntersection.install = function (Vue, options) {
     bind: function bind(el, binding) {
       // 根据不同的参数值 进行不同的初始化
       // console.log(el, binding, "binding");
+      // TODO: 支持针对不同的dom节点设置不同的配置
+      // 1. 漏出多少
+      // 2. 停留时长
       that.globalObserver.observe(el);
     },
     update: function update() {},

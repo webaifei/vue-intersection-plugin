@@ -14,7 +14,6 @@ function VueIntersection(Vue, options = {}) {
         duration: DEFAULT_DURATION, //停留时长
         deviation: 0.1 //误差
     };
-    // this._observers = {};
     this.Vue = Vue;
     this.init(options);
 }
@@ -29,10 +28,12 @@ VueIntersection.install = function (Vue, options) {
         bind (el, binding) {
             // 根据不同的参数值 进行不同的初始化
             // console.log(el, binding, "binding");
+            // TODO: 支持针对不同的dom节点设置不同的配置
+            // 1. 漏出多少
+            // 2. 停留时长
             that.globalObserver.observe(el);
         },
         update() {
-
         },
         // 取消观察
         unbind (el, binding) {
@@ -134,8 +135,7 @@ VueIntersection.prototype._startTimer = function ($el, handler, duration) {
             const logConfigStr = $el.dataset.log;
             try {
                 let logConfig = JSON.parse(logConfigStr);
-                const {eventName, eventValue, rsd} = logConfig;
-                handler(eventName, eventValue, rsd);
+                handler(logConfig);
             } catch (error) {
                 console.log(error);
             }

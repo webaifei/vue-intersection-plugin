@@ -34,6 +34,33 @@ Vue.use(vueIntersectionPlugin, {
 
 ### Documentation
 
+#### 配置参数
+```js
+Vue.use(vueIntersectionPlugin, options)
+```
+options
+|porp|value| example | default |TIPS|
+|--|--|--|---|---|
+|root| DOM element |document.getElementById('#test')| document|其他的容器没有测试|
+|handler| 满足曝光条件出发的回调 | | null ||
+|threshold|dom元素在可视区域漏出多少 算曝光 [Array, Number] |0.5 or [0.5]| 0.5 |如果想要实现一进入可视区域就开始算曝光，你设置threshold:0 ,程序内部会将它充值成0.01|
+|duration|在可视区域停留多长时间算曝光 [Number 单位毫秒]|1000| 1000||
+
+#### 指令参数
+TODO
+#### 埋点数据
+将埋点发送的数据绑定到要曝光统计的DOM元素 dataset上
+```vue
+ <div
+    v-intersection
+    :data-log="JSON.stringify({
+       module: 'test-a',
+       productId: '0011'
+    })"
+    >
+
+</div>
+```
 ### Demo
 
 ### license
