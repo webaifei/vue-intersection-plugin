@@ -2,7 +2,7 @@
 title: vue-intersection-plugin
 lang: zh-CN
 home: true
-heroImage: https://webaifei.github.io/vue-intersection-plugin/assets/img/vue-insersection.png
+heroImage: /vue-insersection.png
 actionText: Get Started →
 actionLink:
 features:

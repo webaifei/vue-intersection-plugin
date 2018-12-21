@@ -6,7 +6,9 @@ module.exports = {
         repo: 'webaifei/vue-intersection-plugin',
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'Guide', link: '/guide/' }
+            { text: 'Guide', link: '/guide/' },
+            { text: 'demo', link: 'https://webaifei.github.io/vue-intersection-plugin/demo/#/' }
+
         ]
     }
 }

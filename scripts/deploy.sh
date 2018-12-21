@@ -4,8 +4,18 @@
 set -e
 
 # build
-yarn run docs:build
+yarn run doc:build
 
+# copy demo to docs/.vuepress/dist
+if test -e src/demo/dist
+then
+    cp -rf src/demo/dist docs/.vuepress/dist/demo
+else
+    cd src/demo
+    yarn run build
+    cd -
+    cp -rf src/demo/dist docs/.vuepress/dist/demo
+fi
 # navigate into the build output directory
 cd docs/.vuepress/dist
 

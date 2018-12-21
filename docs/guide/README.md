@@ -1,3 +1,5 @@
+### DEMO
+[DEMO](https://webaifei.github.io/vue-intersection-plugin/demo/)
 ### install
 ```js
 npm i vue-intersection-plugin -S

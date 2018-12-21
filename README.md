@@ -68,7 +68,7 @@ TODO
 </div>
 ```
 ### Demo
-
+[DEMO](https://webaifei.github.io/vue-intersection-plugin/demo/)
 ### license
 
 MIT
