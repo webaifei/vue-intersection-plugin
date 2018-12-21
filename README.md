@@ -1,6 +1,7 @@
 # vue-intersection-plugin
 > 检测DOM节点 是否曝光 用于广告、产品曝光等统计
-
+### Demo
+[DEMO](https://webaifei.github.io/vue-intersection-plugin/demo/)
 ### install
 ```js
 npm i vue-intersection-plugin -S
@@ -67,8 +68,7 @@ TODO
     />
 </div>
 ```
-### Demo
-[DEMO](https://webaifei.github.io/vue-intersection-plugin/demo/)
+
 ### license
 
 MIT
