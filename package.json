@@ -9,6 +9,7 @@
         "doc:deploy": "./scripts/deploy.sh",
         "build": "rollup -c"
     },
+    "homepage": "https://webaifei.github.io/vue-intersection-plugin/",
     "repository": "https://github.com/webaifei/vue-intersection-plugin.git",
     "author": "webaifei",
     "license": "MIT",

@@ -4,7 +4,7 @@ lang: zh-CN
 home: true
 heroImage: /vue-insersection.png
 actionText: Get Started →
-actionLink:
+actionLink: /guide/
 features:
 - title: 简单易用
   details: 仅仅是一个vue plugin和一个指令
