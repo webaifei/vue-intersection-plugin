@@ -10,12 +10,11 @@ yarn run doc:build
 if test -e src/demo/dist
 then
     rm -rf src/demo/dist
-else
-    cd src/demo
-    yarn run build
-    cd -
-    cp -rf src/demo/dist docs/.vuepress/dist/demo
 fi
+cd src/demo
+yarn run build
+cd -
+cp -rf src/demo/dist docs/.vuepress/dist/demo
 # navigate into the build output directory
 cd docs/.vuepress/dist
 
