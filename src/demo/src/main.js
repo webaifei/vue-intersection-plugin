@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueIntersectionPlugin from "vue-intersection-plugin";
 import mandMobile from "mand-mobile";
+import FastClick from "fastclick";
 import "mand-mobile/lib/mand-mobile.css";
 import App from "./App.vue";
 import { log } from "./utils/";
@@ -10,7 +11,7 @@ Vue.use(VueIntersectionPlugin, {
 });
 import router from "./router";
 import "normalize.css";
-
+FastClick.attach(document.body);
 Vue.config.productionTip = false;
 
 new Vue({
