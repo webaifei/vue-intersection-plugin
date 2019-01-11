@@ -1,71 +1,8 @@
 /**
-* vue-intersection-plugin v1.1.2
-* (c) 2018 webaifei
+* vue-intersection-plugin v1.1.7
+* (c) 2019 webaifei
 * @license MIT
 */
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var _core = createCommonjsModule(function (module) {
-var core = module.exports = { version: '2.6.1' };
-if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
-});
-var _core_1 = _core.version;
-
-var _global = createCommonjsModule(function (module) {
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self
-  // eslint-disable-next-line no-new-func
-  : Function('return this')();
-if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
-});
-
-var _library = false;
-
-var _shared = createCommonjsModule(function (module) {
-var SHARED = '__core-js_shared__';
-var store = _global[SHARED] || (_global[SHARED] = {});
-
-(module.exports = function (key, value) {
-  return store[key] || (store[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: _core.version,
-  mode: _library ? 'pure' : 'global',
-  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
-});
-});
-
-var id = 0;
-var px = Math.random();
-var _uid = function (key) {
-  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
-};
-
-var _wks = createCommonjsModule(function (module) {
-var store = _shared('wks');
-
-var Symbol = _global.Symbol;
-var USE_SYMBOL = typeof Symbol == 'function';
-
-var $exports = module.exports = function (name) {
-  return store[name] || (store[name] =
-    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : _uid)('Symbol.' + name));
-};
-
-$exports.store = store;
-});
-
-var _isObject = function (it) {
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-var _anObject = function (it) {
-  if (!_isObject(it)) throw TypeError(it + ' is not an object!');
-  return it;
-};
-
 var _fails = function (exec) {
   try {
     return !!exec();
@@ -77,6 +14,28 @@ var _fails = function (exec) {
 // Thank's IE8 for his funny defineProperty
 var _descriptors = !_fails(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+var _isObject = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+var _anObject = function (it) {
+  if (!_isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var _global = createCommonjsModule(function (module) {
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 });
 
 var document$1 = _global.document;
@@ -121,6 +80,25 @@ var _objectDp = {
 	f: f
 };
 
+// 21.2.5.3 get RegExp.prototype.flags
+
+var _flags = function () {
+  var that = _anObject(this);
+  var result = '';
+  if (that.global) result += 'g';
+  if (that.ignoreCase) result += 'i';
+  if (that.multiline) result += 'm';
+  if (that.unicode) result += 'u';
+  if (that.sticky) result += 'y';
+  return result;
+};
+
+// 21.2.5.3 get RegExp.prototype.flags()
+if (_descriptors && /./g.flags != 'g') _objectDp.f(RegExp.prototype, 'flags', {
+  configurable: true,
+  get: _flags
+});
+
 var _propertyDesc = function (bitmap, value) {
   return {
     enumerable: !(bitmap & 1),
@@ -136,6 +114,117 @@ var _hide = _descriptors ? function (object, key, value) {
   object[key] = value;
   return object;
 };
+
+var hasOwnProperty = {}.hasOwnProperty;
+var _has = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+var id = 0;
+var px = Math.random();
+var _uid = function (key) {
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+var _core = createCommonjsModule(function (module) {
+var core = module.exports = { version: '2.6.1' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+});
+var _core_1 = _core.version;
+
+var _redefine = createCommonjsModule(function (module) {
+var SRC = _uid('src');
+var TO_STRING = 'toString';
+var $toString = Function[TO_STRING];
+var TPL = ('' + $toString).split(TO_STRING);
+
+_core.inspectSource = function (it) {
+  return $toString.call(it);
+};
+
+(module.exports = function (O, key, val, safe) {
+  var isFunction = typeof val == 'function';
+  if (isFunction) _has(val, 'name') || _hide(val, 'name', key);
+  if (O[key] === val) return;
+  if (isFunction) _has(val, SRC) || _hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+  if (O === _global) {
+    O[key] = val;
+  } else if (!safe) {
+    delete O[key];
+    _hide(O, key, val);
+  } else if (O[key]) {
+    O[key] = val;
+  } else {
+    _hide(O, key, val);
+  }
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, TO_STRING, function toString() {
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+});
+
+var TO_STRING = 'toString';
+var $toString = /./[TO_STRING];
+
+var define = function (fn) {
+  _redefine(RegExp.prototype, TO_STRING, fn, true);
+};
+
+// 21.2.5.14 RegExp.prototype.toString()
+if (_fails(function () { return $toString.call({ source: 'a', flags: 'b' }) != '/a/b'; })) {
+  define(function toString() {
+    var R = _anObject(this);
+    return '/'.concat(R.source, '/',
+      'flags' in R ? R.flags : !_descriptors && R instanceof RegExp ? _flags.call(R) : undefined);
+  });
+// FF44- RegExp#toString has a wrong name
+} else if ($toString.name != TO_STRING) {
+  define(function toString() {
+    return $toString.call(this);
+  });
+}
+
+var DateProto = Date.prototype;
+var INVALID_DATE = 'Invalid Date';
+var TO_STRING$1 = 'toString';
+var $toString$1 = DateProto[TO_STRING$1];
+var getTime = DateProto.getTime;
+if (new Date(NaN) + '' != INVALID_DATE) {
+  _redefine(DateProto, TO_STRING$1, function toString() {
+    var value = getTime.call(this);
+    // eslint-disable-next-line no-self-compare
+    return value === value ? $toString$1.call(this) : INVALID_DATE;
+  });
+}
+
+var _library = false;
+
+var _shared = createCommonjsModule(function (module) {
+var SHARED = '__core-js_shared__';
+var store = _global[SHARED] || (_global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: _core.version,
+  mode: 'global',
+  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+});
+});
+
+var _wks = createCommonjsModule(function (module) {
+var store = _shared('wks');
+
+var Symbol = _global.Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
+
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : _uid)('Symbol.' + name));
+};
+
+$exports.store = store;
+});
 
 // 22.1.3.31 Array.prototype[@@unscopables]
 var UNSCOPABLES = _wks('unscopables');
@@ -176,42 +265,6 @@ var _defined = function (it) {
 var _toIobject = function (it) {
   return _iobject(_defined(it));
 };
-
-var hasOwnProperty = {}.hasOwnProperty;
-var _has = function (it, key) {
-  return hasOwnProperty.call(it, key);
-};
-
-var _redefine = createCommonjsModule(function (module) {
-var SRC = _uid('src');
-var TO_STRING = 'toString';
-var $toString = Function[TO_STRING];
-var TPL = ('' + $toString).split(TO_STRING);
-
-_core.inspectSource = function (it) {
-  return $toString.call(it);
-};
-
-(module.exports = function (O, key, val, safe) {
-  var isFunction = typeof val == 'function';
-  if (isFunction) _has(val, 'name') || _hide(val, 'name', key);
-  if (O[key] === val) return;
-  if (isFunction) _has(val, SRC) || _hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
-  if (O === _global) {
-    O[key] = val;
-  } else if (!safe) {
-    delete O[key];
-    _hide(O, key, val);
-  } else if (O[key]) {
-    O[key] = val;
-  } else {
-    _hide(O, key, val);
-  }
-// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
-})(Function.prototype, TO_STRING, function toString() {
-  return typeof this == 'function' && this[SRC] || $toString.call(this);
-});
-});
 
 var _aFunction = function (it) {
   if (typeof it != 'function') throw TypeError(it + ' is not a function!');
@@ -540,6 +593,27 @@ _iterators.Arguments = _iterators.Array;
 _addToUnscopables('keys');
 _addToUnscopables('values');
 _addToUnscopables('entries');
+
+// most Object methods by ES6 should accept primitives
+
+
+
+var _objectSap = function (KEY, exec) {
+  var fn = (_core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  _export(_export.S + _export.F * _fails(function () { fn(1); }), 'Object', exp);
+};
+
+// 19.1.2.14 Object.keys(O)
+
+
+
+_objectSap('keys', function () {
+  return function keys(it) {
+    return _objectKeys(_toObject(it));
+  };
+});
 
 var ITERATOR$1 = _wks('iterator');
 var TO_STRING_TAG = _wks('toStringTag');
@@ -1490,7 +1564,18 @@ VueIntersection.install = function (Vue, options) {
       // 2. 停留时长
       that.globalObserver.observe(el);
     },
-    update: function update() {},
+    update: function update(el, binding, vnode, oldVnode) {
+      // console.log(vnode,oldVnode,'update----')
+      if (that.isUpdate(vnode, oldVnode)) {
+        // 重新
+        console.log("update");
+        el.preIntersectionRatio = undefined;
+        clearTimeout(el.$$timer);
+        el.$$timer = null;
+        that.globalObserver.unobserve(el);
+        that.globalObserver.observe(el);
+      }
+    },
     // 取消观察
     unbind: function unbind(el, binding) {
       console.log(binding);
@@ -1531,7 +1616,7 @@ VueIntersection.prototype._observe = function () {
       duration = _this$options.duration;
   this.globalObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (item) {
-      // item.isIntersecting 真机测试效果 基本上都是 true
+      // item.isIntersecting 真机测试效果 基本上都是 true 暂时无用
       // item.target
       // item.intersectionRatio
       var $el = item.target; // console.log("change" , "text-"+$el.innerHTML,item.intersectionRatio, $el.preIntersectionRatio);
@@ -1554,11 +1639,6 @@ VueIntersection.prototype._observe = function () {
         }
       } else {
         // 本次检测不在可视区域中
-        // 没有上一次的位置 首次
-        // if($el.preIntersectionRatio === undefined) {
-        //     // $el.preIntersectionRatio = item.intersectionRatio;
-        //     return;
-        // }
         // 上一次不在可视区域
         if ($el.preIntersectionRatio < threshold[0]) ; // enter
         // $el.preIntersectionRatio = item.intersectionRatio;
@@ -1586,6 +1666,55 @@ VueIntersection.prototype._observe = function () {
   });
 };
 /**
+  判断输入的埋点是否发生了变化
+ */
+
+
+VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
+  if (vnode && oldVnode) {
+    var newLogData = vnode.data.attrs["data-log"];
+    var oldLogData = vnode.data.attrs["data-log"];
+    return this._isEqual(newLogData, oldLogData);
+  } else {
+    return false;
+  }
+};
+
+VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
+  if (vnode && oldVnode) {
+    var newLogData = vnode.data.attrs["data-log"];
+    var oldLogData = vnode.data.attrs["data-log"];
+    return this._isEqual(newLogData, oldLogData);
+  } else {
+    return false;
+  }
+};
+/**
+  判断两个对象是否相同 只比较一级
+ */
+
+
+VueIntersection.prototype._isEqual = function (a, b) {
+  if (isObject(a) && isObject(b)) {
+    var akeys = Object.keys(a);
+    var bkeys = Object.keys(b);
+
+    if (akeys.length != bkeys.length) {
+      return false;
+    } else {
+      for (var key in a) {
+        if (a[key] != b[key]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+  } else {
+    return true;
+  }
+};
+/**
  * 添加计时器
  * @param {DOM} $el 监听的DOM元素
  * @param {Function} handler 曝光回调
@@ -1606,6 +1735,11 @@ VueIntersection.prototype._startTimer = function ($el, handler, duration) {
       }
     }
   }, duration);
-};
+}; // 是否是纯对象
+
+
+function isObject(a) {
+  return Object.prototype.toString.call(a) === "[object Object]";
+}
 
 export default VueIntersection;
