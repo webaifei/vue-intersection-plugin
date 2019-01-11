@@ -106,6 +106,9 @@ VueIntersection.prototype._observe = function () {
                 if($el.preIntersectionRatio < threshold[0]) {
                     // enter
                     // $el.preIntersectionRatio = item.intersectionRatio;
+                    if(Math.abs($el.preIntersectionRatio - threshold[0])<=threshold[0]/2) {
+                      _this._startTimer($el, handler, duration);
+                    }
                 }
                 // 上一次在可视区域
                 else {
