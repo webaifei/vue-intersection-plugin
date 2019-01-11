@@ -37,7 +37,7 @@ VueIntersection.install = function (Vue, options) {
           // console.log(vnode,oldVnode,'update----')
           if(that.isUpdate(vnode, oldVnode)) {
             // 重新
-            console.log("update")
+            // console.log("update")
             el.preIntersectionRatio = undefined;
             clearTimeout(el.$$timer);
             el.$$timer = null;
@@ -47,7 +47,10 @@ VueIntersection.install = function (Vue, options) {
         },
         // 取消观察
         unbind (el, binding) {
-            console.log(binding);
+            // console.log(binding);
+            if(el.$$timer) {
+              clearTimeout(el.$$timer);
+            }
             that.globalObserver.unobserve(el);
         }
     });
