@@ -1,6 +1,6 @@
 {
     "name": "vue-intersection-plugin",
-    "version": "1.1.9",
+    "version": "1.2.0",
     "description": "a plugin ",
     "main": "dist/index.esm.js",
     "keywords": ["vue", "plugin", "directive", "intersection", "log"],
@@ -8,7 +8,8 @@
         "doc:dev": "vuepress dev docs",
         "doc:build": "vuepress build docs",
         "doc:deploy": "./scripts/deploy.sh",
-        "build": "rollup -c"
+        "build": "rollup -c",
+        "prepublish": "yarn run build"
     },
     "homepage": "https://webaifei.github.io/vue-intersection-plugin/",
     "repository": "https://github.com/webaifei/vue-intersection-plugin.git",

@@ -1,5 +1,5 @@
 /**
-* vue-intersection-plugin v1.1.7
+* vue-intersection-plugin v1.2.0
 * (c) 2019 webaifei
 * @license MIT
 */
@@ -1574,7 +1574,7 @@
         // console.log(vnode,oldVnode,'update----')
         if (that.isUpdate(vnode, oldVnode)) {
           // 重新
-          console.log("update");
+          // console.log("update")
           el.preIntersectionRatio = undefined;
           clearTimeout(el.$$timer);
           el.$$timer = null;
@@ -1584,7 +1584,11 @@
       },
       // 取消观察
       unbind: function unbind(el, binding) {
-        console.log(binding);
+        // console.log(binding);
+        if (el.$$timer) {
+          clearTimeout(el.$$timer);
+        }
+
         that.globalObserver.unobserve(el);
       }
     });
