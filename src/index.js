@@ -33,7 +33,17 @@ VueIntersection.install = function (Vue, options) {
             // 2. 停留时长
             that.globalObserver.observe(el);
         },
-        update() {
+        update: function update(el, binding, vnode, oldVnode) {
+          // console.log(vnode,oldVnode,'update----')
+          if(that.isUpdate(vnode, oldVnode)) {
+            // 重新
+            console.log("update")
+            el.preIntersectionRatio = undefined;
+            clearTimeout(el.$$timer);
+            el.$$timer = null;
+            that.globalObserver.unobserve(el);
+            that.globalObserver.observe(el);
+          }
         },
         // 取消观察
         unbind (el, binding) {
@@ -115,6 +125,48 @@ VueIntersection.prototype._observe = function () {
 
 };
 /**
+  判断输入的埋点是否发生了变化
+ */
+VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
+  if(vnode && oldVnode) {
+    const newLogData = vnode.data.attrs["data-log"];
+    const oldLogData = vnode.data.attrs["data-log"];
+    return this._isEqual(newLogData, oldLogData);
+  } else {
+    return false;
+  }
+}
+VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
+  if(vnode && oldVnode) {
+    const newLogData = vnode.data.attrs["data-log"];
+    const oldLogData = vnode.data.attrs["data-log"];
+    return this._isEqual(newLogData, oldLogData);
+  } else {
+    return false;
+  }
+}
+/**
+  判断两个对象是否相同 只比较一级
+ */
+VueIntersection.prototype._isEqual = function (a, b) {
+  if(isObject(a) && isObject(b)) {
+    const akeys = Object.keys(a);
+    const bkeys = Object.keys(b);
+    if(akeys.length != bkeys.length) {
+      return false
+    } else {
+      for(let key in a) {
+        if(a[key]!=b[key]) {
+          return false;
+        }
+      }
+      return true;
+    }
+  } else {
+    return true;
+  }
+}
+/**
  * 添加计时器
  * @param {DOM} $el 监听的DOM元素
  * @param {Function} handler 曝光回调
@@ -133,4 +185,8 @@ VueIntersection.prototype._startTimer = function ($el, handler, duration) {
         }
     }, duration);
 };
+// 是否是纯对象
+function isObject(a) {
+  return Object.prototype.toString.call(a) === "[object Object]";
+}
 export default VueIntersection;
