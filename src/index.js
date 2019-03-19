@@ -142,15 +142,6 @@ VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
     return false;
   }
 }
-VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
-  if(vnode && oldVnode) {
-    const newLogData = vnode.data.attrs["data-log"];
-    const oldLogData = vnode.data.attrs["data-log"];
-    return this._isEqual(newLogData, oldLogData);
-  } else {
-    return false;
-  }
-}
 /**
   判断两个对象是否相同 只比较一级
  */

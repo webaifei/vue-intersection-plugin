@@ -3,7 +3,13 @@
     "version": "1.2.1",
     "description": "a plugin ",
     "main": "dist/index.esm.js",
-    "keywords": ["vue", "plugin", "directive", "intersection", "log"],
+    "keywords": [
+        "vue",
+        "plugin",
+        "directive",
+        "intersection",
+        "log"
+    ],
     "scripts": {
         "doc:dev": "vuepress dev docs",
         "doc:build": "vuepress build docs",
