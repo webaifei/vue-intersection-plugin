@@ -1,5 +1,9 @@
 ### DEMO
 [DEMO](https://webkong.github.io/vue-intersection-plugin/demo/)
+
+Fork from [https://github.com/webaifei/vue-intersection-plugin](https://github.com/webaifei/vue-intersection-plugin)
+
+
 ### install
 ```js
 npm i vue-intersection-plugin-revision -S

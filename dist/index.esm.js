@@ -1,5 +1,5 @@
 /**
-* vue-intersection-plugin-revision v1.2.2
+* vue-intersection-plugin-revision v1.2.3
 * (c) 2019 webkong
 * @license MIT
 */
@@ -142,7 +142,7 @@ var store = _global[SHARED] || (_global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: _core.version,
-  mode: 'global',
+  mode: _library ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
