@@ -1,15 +1,15 @@
 ### DEMO
-[DEMO](https://webaifei.github.io/vue-intersection-plugin/demo/)
+[DEMO](https://webkong.github.io/vue-intersection-plugin/demo/)
 ### install
 ```js
-npm i vue-intersection-plugin -S
+npm i vue-intersection-plugin-revision -S
 //or
-yarn add vue-intersection-plugin
+yarn add vue-intersection-plugin-revision
 ```
 
 ### use
 ```js
-import vueIntersectionPlugin from "vue-intersection-plugin";
+import vueIntersectionPlugin from "vue-intersection-plugin-revision";
 Vue.use(vueIntersectionPlugin, {
     handler: (logData)=> {
         // your logic code

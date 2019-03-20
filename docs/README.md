@@ -1,5 +1,5 @@
 ---
-title: vue-intersection-plugin
+title: vue-intersection-plugin-revision
 lang: zh-CN
 home: true
 heroImage: /vue-insersection.png
@@ -26,16 +26,16 @@ meta:
 
 ```bash
 # install with npm
-npm install vue-intersection-plugin
+npm install vue-intersection-plugin-revision
 
 # install with yarn
-yarn add vue-intersection-plugin
+yarn add vue-intersection-plugin-revision
 ```
 
 ## Use
 
 ```js
-import vueIntersectionPlugin from "vue-intersection-plugin";
+import vueIntersectionPlugin from "vue-intersection-plugin-revision";
 Vue.use(vueIntersectionPlugin, {
     handler: (logData)=> {
         // your logic code
