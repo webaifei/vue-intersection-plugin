@@ -1,6 +1,6 @@
 /**
-* vue-intersection-plugin v1.2.1
-* (c) 2019 webaifei
+* vue-intersection-plugin-revision v1.2.2
+* (c) 2019 webkong
 * @license MIT
 */
 (function (global, factory) {
