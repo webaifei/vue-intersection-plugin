@@ -1,9 +1,15 @@
 {
-    "name": "vue-intersection-plugin",
-    "version": "1.2.1",
-    "description": "a plugin ",
+    "name": "vue-intersection-plugin-revision",
+    "version": "1.2.3",
+    "description": "a plugin for vue exposure, used by intersection observer API",
     "main": "dist/index.esm.js",
-    "keywords": ["vue", "plugin", "directive", "intersection", "log"],
+    "keywords": [
+        "vue",
+        "plugin",
+        "directive",
+        "intersection",
+        "log"
+    ],
     "scripts": {
         "doc:dev": "vuepress dev docs",
         "doc:build": "vuepress build docs",
@@ -11,9 +17,9 @@
         "build": "rollup -c",
         "prepublish": "yarn run build"
     },
-    "homepage": "https://webaifei.github.io/vue-intersection-plugin/",
-    "repository": "https://github.com/webaifei/vue-intersection-plugin.git",
-    "author": "webaifei",
+    "homepage": "https://webkong.github.io/vue-intersection-plugin/",
+    "repository": "https://github.com/webkong/vue-intersection-plugin.git",
+    "author": "webkong",
     "license": "MIT",
     "devDependencies": {
         "@babel/preset-env": "^7.2.0",

@@ -37,12 +37,13 @@ VueIntersection.install = function (Vue, options) {
           // console.log(vnode,oldVnode,'update----')
           if(that.isUpdate(vnode, oldVnode)) {
             // 重新
+            //TODO:不需要重新绑定observe，会导致重复曝光
             // console.log("update")
-            el.preIntersectionRatio = undefined;
-            clearTimeout(el.$$timer);
-            el.$$timer = null;
-            that.globalObserver.unobserve(el);
-            that.globalObserver.observe(el);
+            // el.preIntersectionRatio = undefined;
+            // clearTimeout(el.$$timer);
+            // el.$$timer = null;
+            // that.globalObserver.unobserve(el);
+            // that.globalObserver.observe(el);
           }
         },
         // 取消观察
@@ -133,15 +134,6 @@ VueIntersection.prototype._observe = function () {
 /**
   判断输入的埋点是否发生了变化
  */
-VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
-  if(vnode && oldVnode) {
-    const newLogData = vnode.data.attrs["data-log"];
-    const oldLogData = vnode.data.attrs["data-log"];
-    return this._isEqual(newLogData, oldLogData);
-  } else {
-    return false;
-  }
-}
 VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
   if(vnode && oldVnode) {
     const newLogData = vnode.data.attrs["data-log"];

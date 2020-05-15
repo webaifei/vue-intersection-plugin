@@ -1,5 +1,5 @@
 ---
-title: vue-intersection-plugin
+title: vue-intersection-plugin-revision
 lang: zh-CN
 home: true
 heroImage: /vue-insersection.png
@@ -12,8 +12,8 @@ features:
   details: 使用IntersectionObserver（不阻塞主线程）,不支持IntersectionObserver 使用scroll+函数节流+setTimeout
 - title: 稳定
   details: 严格测试
-footer: MIT Licensed | Copyright © 2018-present webaifei
-description: 模块曝光埋点解决方案
+footer: MIT Licensed | Copyright © 2018-present webkong
+description: 模块曝光埋点解决方案,Fork 的 vue-intersection-plugin，修复了重复曝光的问题。
 meta:
   - name: og:title
     content: vue-intersection-plugin
@@ -26,16 +26,16 @@ meta:
 
 ```bash
 # install with npm
-npm install vue-intersection-plugin
+npm install vue-intersection-plugin-revision
 
 # install with yarn
-yarn add vue-intersection-plugin
+yarn add vue-intersection-plugin-revision
 ```
 
 ## Use
 
 ```js
-import vueIntersectionPlugin from "vue-intersection-plugin";
+import vueIntersectionPlugin from "vue-intersection-plugin-revision";
 Vue.use(vueIntersectionPlugin, {
     handler: (logData)=> {
         // your logic code
@@ -52,7 +52,6 @@ Vue.use(vueIntersectionPlugin, {
             //your log data
         })"
         >
-    
     </div>
 </YourComponent>
 ```

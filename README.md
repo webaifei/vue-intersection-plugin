@@ -1,17 +1,22 @@
-# vue-intersection-plugin
+# vue-intersection-plugin-revision
+
+Fork from [https://github.com/webaifei/vue-intersection-plugin](https://github.com/webaifei/vue-intersection-plugin)
+
+修改了部分内容。
+
 > 检测DOM节点 是否曝光 用于广告、产品曝光等统计
 ### Demo
 [DEMO](https://webaifei.github.io/vue-intersection-plugin/demo/)
 ### install
 ```js
-npm i vue-intersection-plugin -S
+npm i vue-intersection-plugin-revision -S
 //or 
-yarn add vue-intersection-plugin
+yarn add vue-intersection-plugin-revision
 ```
 
 ### use
 ```js
-import vueIntersectionPlugin from "vue-intersection-plugin";
+import vueIntersectionPlugin from "vue-intersection-plugin-revision";
 Vue.use(vueIntersectionPlugin, {
     handler: (logData)=> {
         // your logic code

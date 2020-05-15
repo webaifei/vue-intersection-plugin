@@ -1,6 +1,6 @@
 /**
-* vue-intersection-plugin v1.2.0
-* (c) 2019 webaifei
+* vue-intersection-plugin-revision v1.2.3
+* (c) 2019 webkong
 * @license MIT
 */
 var _fails = function (exec) {
@@ -127,19 +127,36 @@ var _uid = function (key) {
 };
 
 var _core = createCommonjsModule(function (module) {
-var core = module.exports = { version: '2.6.1' };
+var core = module.exports = { version: '2.6.5' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 });
 var _core_1 = _core.version;
 
+var _library = false;
+
+var _shared = createCommonjsModule(function (module) {
+var SHARED = '__core-js_shared__';
+var store = _global[SHARED] || (_global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: _core.version,
+  mode: _library ? 'pure' : 'global',
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+});
+});
+
+var _functionToString = _shared('native-function-to-string', Function.toString);
+
 var _redefine = createCommonjsModule(function (module) {
 var SRC = _uid('src');
+
 var TO_STRING = 'toString';
-var $toString = Function[TO_STRING];
-var TPL = ('' + $toString).split(TO_STRING);
+var TPL = ('' + _functionToString).split(TO_STRING);
 
 _core.inspectSource = function (it) {
-  return $toString.call(it);
+  return _functionToString.call(it);
 };
 
 (module.exports = function (O, key, val, safe) {
@@ -159,7 +176,7 @@ _core.inspectSource = function (it) {
   }
 // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
 })(Function.prototype, TO_STRING, function toString() {
-  return typeof this == 'function' && this[SRC] || $toString.call(this);
+  return typeof this == 'function' && this[SRC] || _functionToString.call(this);
 });
 });
 
@@ -196,21 +213,6 @@ if (new Date(NaN) + '' != INVALID_DATE) {
     return value === value ? $toString$1.call(this) : INVALID_DATE;
   });
 }
-
-var _library = false;
-
-var _shared = createCommonjsModule(function (module) {
-var SHARED = '__core-js_shared__';
-var store = _global[SHARED] || (_global[SHARED] = {});
-
-(module.exports = function (key, value) {
-  return store[key] || (store[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: _core.version,
-  mode: 'global',
-  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
-});
-});
 
 var _wks = createCommonjsModule(function (module) {
 var store = _shared('wks');
@@ -1566,15 +1568,7 @@ VueIntersection.install = function (Vue, options) {
     },
     update: function update(el, binding, vnode, oldVnode) {
       // console.log(vnode,oldVnode,'update----')
-      if (that.isUpdate(vnode, oldVnode)) {
-        // 重新
-        // console.log("update")
-        el.preIntersectionRatio = undefined;
-        clearTimeout(el.$$timer);
-        el.$$timer = null;
-        that.globalObserver.unobserve(el);
-        that.globalObserver.observe(el);
-      }
+      if (that.isUpdate(vnode, oldVnode)) ;
     },
     // 取消观察
     unbind: function unbind(el, binding) {
@@ -1610,7 +1604,7 @@ VueIntersection.prototype.init = function (options) {
 };
 
 VueIntersection.prototype._observe = function () {
-  var _this = this;
+  var _this2 = this;
 
   var _this$options = this.options,
       handler = _this$options.handler,
@@ -1630,23 +1624,27 @@ VueIntersection.prototype._observe = function () {
         // 没有上一次的位置 首次
         if ($el.preIntersectionRatio === undefined) {
           // 开始timer
-          _this._startTimer($el, handler, duration);
+          _this2._startTimer($el, handler, duration);
         } else {
           // 上一次不在可视区域
           if ($el.preIntersectionRatio < threshold[0]) {
             // enter
             // 开始 timer
             if (!$el.timer) {
-              _this._startTimer($el, handler, duration);
+              _this2._startTimer($el, handler, duration);
             }
           }
         }
       } else {
         // 本次检测不在可视区域中
         // 上一次不在可视区域
-        if ($el.preIntersectionRatio < threshold[0]) ; // enter
-        // $el.preIntersectionRatio = item.intersectionRatio;
-        // 上一次在可视区域
+        if ($el.preIntersectionRatio < threshold[0]) {
+          // enter
+          // $el.preIntersectionRatio = item.intersectionRatio;
+          if (Math.abs($el.preIntersectionRatio - threshold[0]) <= threshold[0] / 2) {
+            _this._startTimer($el, handler, duration);
+          }
+        } // 上一次在可视区域
         else {
             // leave
             // try clearTimeout
@@ -1673,16 +1671,6 @@ VueIntersection.prototype._observe = function () {
   判断输入的埋点是否发生了变化
  */
 
-
-VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
-  if (vnode && oldVnode) {
-    var newLogData = vnode.data.attrs["data-log"];
-    var oldLogData = vnode.data.attrs["data-log"];
-    return this._isEqual(newLogData, oldLogData);
-  } else {
-    return false;
-  }
-};
 
 VueIntersection.prototype.isUpdate = function (vnode, oldVnode) {
   if (vnode && oldVnode) {

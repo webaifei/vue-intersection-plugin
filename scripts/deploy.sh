@@ -4,7 +4,7 @@
 set -e
 
 # build
-yarn run doc:build
+npm run doc:build
 
 # copy demo to docs/.vuepress/dist
 if test -e src/demo/dist
@@ -12,7 +12,7 @@ then
     rm -rf src/demo/dist
 fi
 cd src/demo
-yarn run build
+npm run build
 cd -
 cp -rf src/demo/dist docs/.vuepress/dist/demo
 # navigate into the build output directory
@@ -22,5 +22,5 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:webaifei/vue-intersection-plugin.git master:gh-pages
+git push -f git@github.com:webkong/vue-intersection-plugin.git master:gh-pages
 cd -

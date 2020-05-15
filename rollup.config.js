@@ -4,8 +4,8 @@ import babel from 'rollup-plugin-babel';
 const version = process.env.VERSION || require('./package.json').version;
 const config = {
     banner: `/**
-* vue-intersection-plugin v${version}
-* (c) ${new Date().getFullYear()} webaifei
+* vue-intersection-plugin-revision v${version}
+* (c) ${new Date().getFullYear()} webkong
 * @license MIT
 */`
 };
